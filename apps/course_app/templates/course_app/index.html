@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a student to all bootcamp courses</title>
+  </head>
+  <body>
+    <h1>Add a new course</h1>
+    <form action="/process" method="post">
+      {% csrf_token %}
+      Name:<br><input type="text" name="name" ><br>
+      Description:<br><textarea name="description" rows="8" cols="40"></textarea>
+      <input type="submit" name="button" value="Add">
+    </form>
+    <p>
+{% if messages %}
+{% for message in messages %}
+{{ message }}
+{% endfor %}
+{% endif %}
+
+    </p>
+    <h1>Courses</h1>
+    <table>
+      <tr>
+        <th>
+          Course name
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Date Added
+        </th>
+        <th>
+          Actions
+        </th>
+      </tr>
+
+      {% for course in courses %}
+      <tr>
+      <td>
+        {{course.name}}
+        <a>hi</a>
+      </td>
+      <td>
+        {{course.description.description}}
+      </td>
+      <td>
+        {{course.date_added}}
+      </td>
+      <td>
+        <a href="removed/{{course.id}}">remove</a>
+        </td>
+      </tr>
+      {%endfor%}
+    </table>
+
+  </body>
+</html>
